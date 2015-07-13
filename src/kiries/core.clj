@@ -19,7 +19,7 @@
            (.node (NodeBuilder/nodeBuilder)))))
 
 (defn stop-es []
-  (.close (es-service)))
+  (.close (@es-service)))
 
 
 (defn start-ri [& argv]
@@ -64,15 +64,3 @@
       (web/start :port (:port options)
                  :join? false
                  :host (:host options)))))
-    
-
-
-
-
-
-
-
-  
-
-
-

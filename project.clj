@@ -25,14 +25,17 @@
                  [clj-http "0.9.1"]
                  [cheshire "5.3.1"]
                  [clojure-csv/clojure-csv "2.0.1"]
-
-                 ;; Redis integration
-                 [com.taoensso/carmine "2.6.2"]]
+                 ]
+  
   
   :resource-paths ["resources"]
   ;;:jar-exclusions [#"^config"]
   :main kiries.core
-  :profiles {:uberjar {:aot :all, :uberjar-merge-with {#"^META-INF/services/" [slurp str spit]}}}
+  :profiles {:user {:plugins [[cider/cider-nrepl "0.10.0-SNAPSHOT"]
+                              [refactor-nrepl "1.1.0-SNAPSHOT"]
+                              ]
+                    :dependencies [[org.clojure/tools.nrepl "0.2.10"]]}
+             :uberjar {:aot :all, :uberjar-merge-with {#"^META-INF/services/" [slurp str spit]}}}
   :aliases {"server" ["trampoline" "run" "-m" "kiries.core"]})
 
 
