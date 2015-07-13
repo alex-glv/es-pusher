@@ -56,9 +56,10 @@
                        join?]
                 :or {port 9090
                      host "0.0.0.0"
-                     join? true
+                     join? false
                      }
                 :as options}]
+  (print options)
   (run-jetty #'app
              {:host host
               :port port
