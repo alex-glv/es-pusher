@@ -1,18 +1,14 @@
 (defproject kiries "0.1.0-SNAPSHOT"
   :description "A bundled deployment of Kibana, Riemann, and ElasticSearch"
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/tools.cli "0.2.4"]
+                 [org.clojure/tools.cli "0.3.1"]
                  [clj-logging-config "1.9.10"]
                  [clj-json "0.5.3"]
                  [slingshot "0.10.3"]
-                 
-                 [riemann "0.2.5"]
+                 [riemann "0.2.9"]
                  [clj-time "0.7.0"]
                  [clojurewerkz/elastisch "1.5.0-beta3"]
-                 [org.elasticsearch/elasticsearch "1.1.1"]
-                 
                  [metrics-clojure "1.0.1"]
-                 
                  ;; web tools
                  [compojure "1.1.8"]
                  [hiccup "1.0.5"]
@@ -23,7 +19,6 @@
 
                  ;; integration tools
                  [clj-http "0.9.1"]
-                 [cheshire "5.3.1"]
                  [clojure-csv/clojure-csv "2.0.1"]
                  ]
   

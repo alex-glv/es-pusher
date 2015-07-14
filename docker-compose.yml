@@ -3,11 +3,23 @@ kiries:
   ports:
     - "7254:7254"
     - "9090:9090"
-    - "9200:9200"
     - "5050:5050"
     - "5555:5555"
+    - "5557:5557"
   volumes:
     - .:/app
+    - ~/.m2:/root/.m2   
   dns:
     - 8.8.8.8
     - 9.9.9.9
+  links:
+    - elasticsearch
+
+elasticsearch:
+  hostname: elasticnode
+  image: elasticsearch
+  volumes:
+    - ./config:/usr/share/elasticsearch/config
+  ports:
+    - "9200:9200"
+    - "9300:9300"

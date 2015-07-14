@@ -207,7 +207,7 @@ index.number_of_replicas: 0
 
 # Set both 'bind_host' and 'publish_host':
 #
-# network.host: 127.0.0.1
+network.host: 0.0.0.0
 
 # Set a custom port for the node to node communication (9300 by default):
 #
