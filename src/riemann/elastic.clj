@@ -88,6 +88,7 @@
   for the node, which defaults to `http://localhost:9200`.  This must
   be called before any es-* functions can be used."
   [& argv]
+  (println "Connecting to elastic on " (or (first argv) "http://localhost:9200"))
   (esr/connect! (or (first argv) "http://localhost:9200")))
 
 (defn es-index

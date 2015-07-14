@@ -3,7 +3,6 @@ kiries:
   ports:
     - "7254:7254"
     - "9090:9090"
-    - "5050:5050"
     - "5555:5555"
     - "5557:5557"
   volumes:
@@ -13,13 +12,20 @@ kiries:
     - 8.8.8.8
     - 9.9.9.9
   links:
-    - elasticsearch
+    - es
 
-elasticsearch:
-  hostname: elasticnode
+es:
+  hostname: elasticsearch
   image: elasticsearch
-  volumes:
-    - ./config:/usr/share/elasticsearch/config
   ports:
     - "9200:9200"
-    - "9300:9300"
+
+kibana:
+  image: kibana
+  hostname: kibana
+  ports:
+    - "5601:5601"
+  links:
+    - es
+  environment:
+    - "ELASTICSEARCH_URL=http://elasticsearch:9200"
