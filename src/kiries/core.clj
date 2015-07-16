@@ -30,11 +30,12 @@
         (cli args
              ["-?" "--help" "Show help" :default false :flag true]
              ["-h" "--host" "Interface to listen on." :default "0.0.0.0"]
-             ["-e" "--es" "Elasticsearch instance." :default "http://127.0.0.1:9200"]
+             ["-e" "--es" "Elasticsearch instance." :default (System/getenv "ELASTICSEARCH_URL")]
              ["-p" "--port" "Port to listen on." :default 9090 :parse-fn #(Integer. %)]
              ["-r" "--[no-]riemann" "Run Riemann internally." :default true :flag true]
              ["-w" "--[no-]web" "Run webserver/kibana internally." :default true :flag true]
              )]
+
     (println options)
     (elastic/es-connect (:es options))
 

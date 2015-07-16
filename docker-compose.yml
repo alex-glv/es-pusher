@@ -13,7 +13,8 @@ kiries:
     - 9.9.9.9
   links:
     - es
-
+  environment:
+    - "ELASTICSEARCH_URL=http://elasticsearch:9200"
 es:
   hostname: elasticsearch
   image: elasticsearch
