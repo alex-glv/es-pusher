@@ -4,7 +4,7 @@
             [cheshire.factory :as fact]
             )
   (:import [java.util Properties])
-  (gen-class))
+  (:gen-class))
 
 (defn load-config-file
   "this loads a config file from the classpath"
@@ -54,7 +54,6 @@
                              :host (or (System/getenv "RIEMANN_HOST") (assert-get "riemann.host"))
                              :port (read-string (or (System/getenv "RIEMANN_PORT") (assert-get "riemann.port")))
                              })))
-  
   (if (nil? @*works*)
     (reset! *works* (get-works (assert-get "will.play"))))
 
