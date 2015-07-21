@@ -2,6 +2,8 @@
   :description "A bundled deployment of Kibana, Riemann, and ElasticSearch"
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/tools.cli "0.3.1"]
+                 [riemann-clojure-client "0.3.2"]
+                 [cheshire "5.5.0"]
                  [clj-logging-config "1.9.10"]
                  [clj-json "0.5.3"]
                  [slingshot "0.10.3"]

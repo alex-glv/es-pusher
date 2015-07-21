@@ -8,7 +8,7 @@
             [riemann.bin :as ri-bin]
             [riemann.elastic :as elastic]
             [riemann.config :as ri-config]
-            [kiries.web :as web])
+            [kiries.dataprovider :as dp])
   )
 
 (defn start-ri [& argv]
@@ -33,7 +33,7 @@
              ["-e" "--es" "Elasticsearch instance." :default (System/getenv "ELASTICSEARCH_URL")]
              ["-p" "--port" "Port to listen on." :default 9090 :parse-fn #(Integer. %)]
              ["-r" "--[no-]riemann" "Run Riemann internally." :default true :flag true]
-             ["-w" "--[no-]web" "Run webserver/kibana internally." :default true :flag true]
+             ["-d" "--data" "Import test data" :default :false]
              )]
 
     (println options)
@@ -49,8 +49,7 @@
       (print "Starting Riemann")
       (start-ri))
 
-    (when (:web options)
-      (print "Starting web server for Kibana")
-      (web/start :port (:port options)
-                 :join? false
-                 :host (:host options)))))
+    (when (:data options)
+      (println "Pushing test data")
+      (dp/push-data))
+    ))
