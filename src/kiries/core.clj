@@ -26,14 +26,14 @@
   (ri-bin/reload!))
 
 (defn -main [& args]
-  (let [[options args banner]
-        (cli args
-             ["-?" "--help" "Show help" :default false :flag true]
-             ["-h" "--host" "Interface to listen on." :default "0.0.0.0"]
-             ["-e" "--es" "Elasticsearch instance." :default (System/getenv "ELASTICSEARCH_URL")]
-             ["-p" "--port" "Port to listen on." :default 9090 :parse-fn #(Integer. %)]
-             ["-r" "--[no-]riemann" "Run Riemann internally." :default true :flag true]
-             ["-d" "--data" "Import test data" :default :false]
+  (let [ {options :options}
+        (parse-opts args
+                    [["-?" "--help" "Show help" :default false :flag true]
+                     ["-h" "--host" "Interface to listen on." :default "0.0.0.0"]
+                     ["-e" "--es" "Elasticsearch instance." :default (System/getenv "ELASTICSEARCH_URL")]
+                     ["-p" "--port" "Port to listen on." :default 9090 :parse-fn #(Integer. %)]
+                     ["-r" "--riemann" "Run Riemann internally." :default true :flag true]
+                     ["-d" "--data" "Import test data" :default false :flag true]]
              )]
 
     (println options)
@@ -41,7 +41,6 @@
 
     (when (:help options)
       (do
-        (println banner)
         (System/exit 0)))
 
 
