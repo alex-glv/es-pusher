@@ -33,6 +33,7 @@
                      ["-e" "--es" "Elasticsearch instance." :default (System/getenv "ELASTICSEARCH_URL")]
                      ["-p" "--port" "Port to listen on." :default 9090 :parse-fn #(Integer. %)]
                      ["-r" "--riemann" "Run Riemann internally." :default true :flag true]
+                     ["-t" "--total" "Import total records" :default 100]
                      ["-d" "--data" "Import test data" :default false :flag true]]
              )]
 
@@ -50,5 +51,5 @@
 
     (when (:data options)
       (println "Pushing test data")
-      (dp/push-data))
+      (dp/push-data (:total options)))
     ))

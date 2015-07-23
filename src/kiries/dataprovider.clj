@@ -47,7 +47,7 @@
           (take (if (= total :all) (count works) total)
                 works)))))
 
-(defn push-data []
+(defn push-data [total]
   (if (nil? @*riemann-conn*)
     (reset! *riemann-conn* (riemann.client/tcp-client
                             {
@@ -57,5 +57,5 @@
   (if (nil? @*works*)
     (reset! *works* (get-works (assert-get "will.play"))))
 
-  (doseq [dt (get-will-lines @*works* )]
+  (doseq [dt (get-will-lines @*works* {:total total} )]
     (riemann.client/send-event @*riemann-conn* (assoc dt :service "shakespeare"))))
