@@ -3,6 +3,8 @@
 /lib
 /classes
 /checkouts
+/target
+*.jar
 pom.xml
 pom.xml.asc
 *.class
