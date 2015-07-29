@@ -1,0 +1,22 @@
+{
+    "template": "tweets-*",
+    "settings" : {
+        "number_of_shards" : 1,
+        "number_of_replicas" : 0,
+        "index" : {
+            "query" : { "default_field" : "text_entry" },
+            "store" : { "compress" : { "stored" : true, "tv": true } }
+        }
+    },
+    "mappings":{
+        "_default_":{
+            "properties": {
+                "location" : {
+                    "type": "geo_point",
+                    "geohash_prefix" : true,
+                    "geohash_precision":  "1km"
+                }
+            }
+        }
+    }
+}

@@ -30,7 +30,6 @@
         (parse-opts args
                     [["-?" "--help" "Show help" :default false :flag true]
                      ["-h" "--host" "Interface to listen on." :default "0.0.0.0"]
-                     ["-e" "--es" "Elasticsearch instance." :default (System/getenv "ELASTICSEARCH_URL")]
                      ["-p" "--port" "Port to listen on." :default 9090 :parse-fn #(Integer. %)]
                      ["-r" "--riemann" "Run Riemann internally." :default true :flag true]
                      ["-t" "--total" "Import total records" :default 100]
@@ -38,7 +37,12 @@
              )]
 
     (println options)
-    (elastic/es-connect (:es options))
+
+    (when (not (re-matches #"^http.+" (System/getenv "ELASTICSEARCH_URL")))
+      (println "Incorrect value for elasticsearch endpoint")
+      (System/exit 1))
+
+    (elastic/es-connect (System/getenv "ELASTICSEARCH_URL"))
 
     (when (:help options)
       (do
