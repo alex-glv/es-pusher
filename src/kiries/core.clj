@@ -32,7 +32,7 @@
                      ["-h" "--host" "Interface to listen on." :default "0.0.0.0"]
                      ["-p" "--port" "Port to listen on." :default 9090 :parse-fn #(Integer. %)]
                      ["-r" "--riemann" "Run Riemann internally." :default true :flag true]
-                     ["-t" "--total" "Import total records" :default 100]
+                     ["-t" "--total" "Import total records" :default 1000]
                      ["-d" "--data" "Import test data" :default false :flag true]]
              )]
 
@@ -55,5 +55,4 @@
 
     (when (:data options)
       (println "Pushing test data")
-      (dp/push-data (:total options))
-      (System/exit 0))))
+      (dp/push-data (:total options)))))
