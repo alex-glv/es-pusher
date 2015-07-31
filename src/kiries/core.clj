@@ -55,5 +55,5 @@
 
     (when (:data options)
       (println "Pushing test data")
-      (dp/push-data (:total options)))
-    ))
+      (dp/push-data (:total options))
+      (System/exit 0))))
