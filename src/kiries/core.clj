@@ -32,7 +32,7 @@
                      ["-h" "--host" "Interface to listen on." :default "0.0.0.0"]
                      ["-p" "--port" "Port to listen on." :default 9090 :parse-fn #(Integer. %)]
                      ["-r" "--riemann" "Run Riemann internally." :default true :flag true]
-                     ["-t" "--total" "Import total records" :default 1000]
+                     ["-t" "--total" "Import total records" :default 10]
                      ["-d" "--data" "Import test data" :default false :flag true]]
              )]
 
