@@ -4,7 +4,7 @@
         "number_of_shards" : 1,
         "number_of_replicas" : 0,
         "index" : {
-            "query" : { "default_field" : "text_entry" },
+            "query" : { "default_field" : "text" },
             "store" : { "compress" : { "stored" : true, "tv": true } }
         }
     },
@@ -15,7 +15,11 @@
                     "type": "geo_point",
                     "geohash_prefix" : true,
                     "geohash_precision":  "1km"
-                }
+                },
+		"text": {
+		    "type": "string",
+		    "index": "analyzed"
+		}
             }
         }
     }
